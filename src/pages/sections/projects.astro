@@ -1,0 +1,122 @@
+---
+const projects = [
+  {
+    title: " Workflow Builder",
+    category: " Product",
+    description:
+      "A platform that helps teams automate repetitive tasks using AI-driven decision flows and smart approval logic.",
+  },
+  {
+    title: "Client Portal",
+    category: "Web App",
+    description:
+      "A polished dashboard for clients to track project updates, files, and performance metrics in one place.",
+  },
+  {
+    title: "Brand Experience Site",
+    category: "Design / Web",
+    description:
+      "A premium marketing site designed to communicate trust, clarity, and digital expertise for modern brands.",
+  },
+];
+---
+
+<section class="projects" id="projects">
+  <div class="section-header">
+    <p class="eyebrow">Selected Work</p>
+    <h2>Projects that solve real problems.</h2>
+  </div>
+
+  <div class="projects-grid">
+    {projects.map((project) => (
+      <article class="project-card">
+        <span class="tag">{project.category}</span>
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+        <a href="#contact">View project</a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: 5rem 5vw;
+    background: #0b1020;
+    color: white;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.7rem;
+    color: #8b5cf6;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    line-height: 1.1;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: rgba(17, 24, 39, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.6);
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.12);
+    color: #c4b5fd;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 999px;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  h3 {
+    margin: 1rem 0 0.75rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: #dfe7ff;
+    line-height: 1.7;
+  }
+
+  a {
+    color: #7dd3fc;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
