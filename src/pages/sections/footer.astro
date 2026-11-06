@@ -1,0 +1,39 @@
+<footer class="site-footer">
+  <p>© 2026 Alexander Palada</p>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 5vw;
+    background: #0b1020;
+    color: #dfe7ff;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .links a {
+    color: #dfe7ff;
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    .site-footer {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
