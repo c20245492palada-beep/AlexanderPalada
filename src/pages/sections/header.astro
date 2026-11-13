@@ -1,24 +1,16 @@
----
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
----
-
 <header class="site-header">
   <div class="brand">
-    <span class="dot"></span>
-    <a href="/">Alexander Palada</a>
+    <span class="brand-mark">A</span>
+    <span>Alexander Palada</span>
   </div>
 
-  <nav class="nav" aria-label="Main navigation">
-    {navItems.map((item) => (
-      <a href={item.href}>{item.label}</a>
-    ))}
+  <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <a class="button primary" href="#contact">Hire Me</a>
+  <a href="#contact" class="cta">Hire Me</a>
 </header>
 
 <style>
@@ -26,14 +18,13 @@ const navItems = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 1.25rem 5vw;
+    padding: 1.2rem 5vw;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
     position: sticky;
     top: 0;
-    background: rgba(10, 10, 10, 0.78);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    z-index: 20;
+    z-index: 50;
   }
 
   .brand {
@@ -43,19 +34,19 @@ const navItems = [
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    color: white;
   }
 
-  .brand a {
-    color: #f5f5f5;
-    text-decoration: none;
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(135deg, #7c3aed, #22d3ee);
-    border-radius: 50%;
-    display: inline-block;
+  .brand-mark {
+    width: 1.8rem;
+    height: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: white;
+    font-size: 0.9rem;
   }
 
   .nav {
@@ -65,7 +56,7 @@ const navItems = [
   }
 
   .nav a {
-    color: #d1d5db;
+    color: #dbeafe;
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.2s ease;
@@ -75,36 +66,28 @@ const navItems = [
     color: #ffffff;
   }
 
-  .button {
+  .cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.8rem 1.2rem;
+    padding: 0.75rem 1.1rem;
     border-radius: 999px;
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: white;
     text-decoration: none;
     font-weight: 600;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
-
-  .button:hover {
-    transform: translateY(-1px);
-  }
-
-  .button.primary {
-    background: linear-gradient(135deg, #7c3aed, #2563eb);
-    color: white;
   }
 
   @media (max-width: 700px) {
     .site-header {
       flex-wrap: wrap;
       justify-content: center;
+      gap: 0.8rem;
     }
 
     .nav {
       width: 100%;
       justify-content: center;
-      flex-wrap: wrap;
     }
   }
 </style>
