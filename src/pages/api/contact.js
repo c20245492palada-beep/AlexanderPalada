@@ -5,7 +5,7 @@ export const prerender = false;
 
 export async function POST({ request, redirect }) {
   const formData = await request.formData();
-  if (formData.get("website")) {
+  if (formData.get("contact_reference")) {
     return redirect("/thanks", 303);
   }
 
