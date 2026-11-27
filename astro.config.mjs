@@ -1,5 +1,24 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
+
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  adapter: vercel(),
+
+  env: {
+    schema: {
+      RESEND_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
+      CONTACT_TO_EMAIL: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
+    },
+  },
+});

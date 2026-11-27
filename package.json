@@ -12,7 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^11.0.22",
     "astro": "^7.4.7",
-    "falling-leaves": "^0.1.0"
+    "falling-leaves": "^0.1.0",
+    "resend": "^6.40.1"
   }
 }

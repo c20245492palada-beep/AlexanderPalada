@@ -79,7 +79,20 @@ const projects = [
             Have a project in mind?{" "}
             <a href="mailto:hello@example.com">Email me.</a>
           </p>
-          <form class="contact-form" id="contact-form">
+          <form
+            class="contact-form"
+            id="contact-form"
+            action="/api/contact"
+            method="POST"
+          >
+            <input
+              class="contact-honeypot"
+              type="text"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
             <div class="contact-field">
               <label for="contact-name">Name</label>
               <input
@@ -462,6 +475,14 @@ const projects = [
     gap: 12px 8px;
   }
 
+  .contact-honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
   .contact-field {
     display: grid;
     min-width: 0;
@@ -742,26 +763,10 @@ nav a:hover {
   import { FallingLeaves } from "falling-leaves";
 
   const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
-  const contactForm =
-    document.querySelector<HTMLFormElement>("#contact-form");
 
   toggle?.addEventListener("click", () => {
     const isDark = document.documentElement.classList.toggle("dark");
     toggle.setAttribute("aria-pressed", String(isDark));
-  });
-
-  contactForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const formData = new FormData(contactForm);
-    const name = formData.get("name")?.toString().trim() ?? "";
-    const email = formData.get("email")?.toString().trim() ?? "";
-    const message = formData.get("message")?.toString().trim() ?? "";
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    );
-
-    window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
   });
 
   const style = document.createElement("style");
