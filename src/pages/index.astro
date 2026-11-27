@@ -35,12 +35,18 @@ const projects = [
     </header>
     <main id="home">
       <section class="hero">
+        <span class="hero-kicker">
+          <span class="hero-kicker-dot" aria-hidden="true"></span>
+          AI ENGINEER · DIGITAL PRODUCT BUILDER
+        </span>
         <h1>Alexander Palada</h1>
         <p>
           AI Engineer building useful digital products for people and small
           businesses.
         </p>
-        <a class="text-link" href="#contact">Get in touch</a>
+        <a class="text-link" href="#contact">
+          Get in touch <span aria-hidden="true">↗</span>
+        </a>
       </section>
 
       <section class="content-section" id="about">
@@ -126,23 +132,25 @@ const projects = [
   :root {
     font-family: Arial, Helvetica, sans-serif;
     color: #171717;
-    background: #fff;
+    background: #f7f6f3;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
-    --page: #fff;
-    --text: #171717;
-    --muted: #656565;
-    --card: #f0f0f2;
-    --border: #e8e8eb;
+    --page: #f7f6f3;
+    --text: #171923;
+    --muted: #69717e;
+    --card: #fff;
+    --surface: #fff;
+    --border: #e7e3dc;
   }
   :root.dark {
     color: #f5f5f5;
-    background: #151515;
-    --page: #151515;
+    background: #10141d;
+    --page: #10141d;
     --text: #f5f5f5;
-    --muted: #b6b6b6;
-    --card: #242424;
-    --border: #343434;
+    --muted: #acb2bb;
+    --card: #1d2330;
+    --surface: #191f2a;
+    --border: #303744;
   }
 
   * {
@@ -150,11 +158,14 @@ const projects = [
   }
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 82px;
   }
   body {
     min-height: 100vh;
     margin: 0;
-    background: var(--page);
+    background:
+      radial-gradient(ellipse at 82% 10%, #f3a64e1a, transparent 30%),
+      var(--page);
     color: var(--text);
     font-size: 14px;
     transition: background 180ms ease, color 180ms ease;
@@ -163,6 +174,9 @@ const projects = [
     color: inherit;
   }
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     min-height: 56px;
     max-width: 1000px;
     margin: 0 auto;
@@ -171,6 +185,7 @@ const projects = [
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    box-shadow: 0 8px 24px #11182714;
   }
 
   .brand {
@@ -186,6 +201,7 @@ const projects = [
   nav a,
   .text-link {
     text-decoration: none;
+    transition: color 180ms ease, transform 180ms ease, background 180ms ease;
   }
 
   nav a {
@@ -194,7 +210,11 @@ const projects = [
 
   nav a:hover,
   .text-link:hover {
-    text-decoration: underline;
+    color: #f3a64e;
+  }
+
+  nav a:hover {
+    transform: translateY(-2px);
   }
 
   .theme-toggle {
@@ -206,6 +226,13 @@ const projects = [
     font: inherit;
     font-size: 11px;
     cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease;
+  }
+
+  .theme-toggle:hover {
+    transform: translateY(-2px);
+    background: #facc15;
+    color: #111827;
   }
 
   main {
@@ -215,28 +242,91 @@ const projects = [
   }
 
   .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     min-height: 270px;
-    padding: 80px 0 60px;
+    padding: 92px 0 76px;
     text-align: center;
+  }
+
+  .hero::before {
+    position: absolute;
+    z-index: -1;
+    top: 26px;
+    left: 50%;
+    width: min(390px, 85vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f3a64e24, #f3a64e00 70%);
+    content: "";
+    transform: translateX(-50%);
+    animation: hero-glow 8s ease-in-out infinite alternate;
+  }
+
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    color: #8a5a24;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+  }
+
+  .hero-kicker-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f3a64e;
+    box-shadow: 0 0 0 4px #f3a64e26;
   }
 
   .hero h1 {
     margin: 0 0 10px;
-    font-size: clamp(30px, 6vw, 42px);
-    letter-spacing: -1.5px;
+    background: linear-gradient(110deg, #171923 28%, #a96425 78%);
+    background-clip: text;
+    color: transparent;
+    font-size: clamp(42px, 7vw, 62px);
+    letter-spacing: -0.065em;
+    line-height: 1.05;
+    -webkit-background-clip: text;
+  }
+
+  :root.dark .hero h1 {
+    background-image: linear-gradient(110deg, #f5f5f5 28%, #f3a64e 82%);
   }
 
   .hero p {
     max-width: 440px;
     margin: 0 auto 20px;
     color: var(--muted);
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.7;
   }
 
   .text-link {
-    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: #111827;
+    color: #fff;
+    font-size: 13px;
     font-weight: 600;
+  }
+
+  .text-link span {
+    color: #f3a64e;
+    font-size: 16px;
+  }
+
+  .text-link:hover {
+    background: #263248;
+    color: #fff;
+    transform: translateY(-2px);
   }
 
   .content-section {
@@ -246,15 +336,24 @@ const projects = [
 
   .content-section h2 {
     margin: 0 0 10px;
-    font-size: 18px;
+    font-size: 22px;
+    letter-spacing: -0.035em;
   }
 
   .content-section > p {
     max-width: 600px;
     margin: 0;
     color: var(--muted);
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  #about {
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 14px 40px #1118270a;
   }
 
   .project-grid {
@@ -265,23 +364,53 @@ const projects = [
   }
 
   .project-card {
+    position: relative;
+    overflow: hidden;
     min-height: 100px;
-    padding: 16px;
+    padding: 20px;
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 16px;
     background: var(--card);
+    box-shadow: 0 12px 28px #1118270a;
+    transition:
+      transform 240ms ease,
+      box-shadow 240ms ease,
+      border-color 240ms ease;
+  }
+
+  .project-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #f3a64e, #facc15, transparent);
+    content: "";
+    transform: scaleX(0.18);
+    transform-origin: left;
+    transition: transform 240ms ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    border-color: #efc58d;
+    box-shadow: 0 20px 36px #11182718;
+  }
+
+  .project-card:hover::before {
+    transform: scaleX(1);
   }
 
   .project-card h3 {
     margin: 0 0 8px;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .project-card p {
     margin: 0;
     color: var(--muted);
-    font-size: 11px;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1.7;
   }
 
   .contact {
@@ -422,6 +551,44 @@ const projects = [
     transform: rotate(35deg);
   }
 
+  .contact-leaf {
+    animation: leaf-drift 4s ease-in-out infinite alternate;
+  }
+
+  .leaf-two {
+    animation-delay: -1.2s;
+  }
+
+  .leaf-three {
+    animation-delay: -2.4s;
+  }
+
+  .leaf-four {
+    animation-delay: -0.8s;
+  }
+
+  @keyframes hero-glow {
+    from {
+      opacity: 0.65;
+      transform: translateX(-50%) scale(0.92);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(-50%) scale(1.08);
+    }
+  }
+
+  @keyframes leaf-drift {
+    from {
+      translate: 0 0;
+    }
+
+    to {
+      translate: 5px -6px;
+    }
+  }
+
   footer {
     max-width: 760px;
     margin: 0 auto;
@@ -477,6 +644,17 @@ const projects = [
 
     .contact-field-message {
       grid-column: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
   .site-header {
@@ -573,13 +751,15 @@ nav a:hover {
 
     .animate-on-scroll {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 700ms ease, transform 700ms ease;
+      transform: translateY(28px) scale(0.98);
+      transition:
+        opacity 700ms cubic-bezier(0.2, 0.65, 0.3, 1),
+        transform 700ms cubic-bezier(0.2, 0.65, 0.3, 1);
     }
 
     .animate-on-scroll.is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     @media (prefers-reduced-motion: reduce) {
