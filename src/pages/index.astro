@@ -239,6 +239,8 @@ const projects = [
   }
 
   main {
+    position: relative;
+    z-index: 1;
     max-width: 760px;
     margin: 0 auto;
     padding: 0 24px;
@@ -613,6 +615,8 @@ const projects = [
   }
 
   footer {
+    position: relative;
+    z-index: 1;
     max-width: 760px;
     margin: 0 auto;
     padding: 18px 24px;
@@ -735,6 +739,8 @@ nav a:hover {
 }
 </style>
 <script>
+  import { FallingLeaves } from "falling-leaves";
+
   const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
   const contactForm =
     document.querySelector<HTMLFormElement>("#contact-form");
@@ -832,6 +838,20 @@ nav a:hover {
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
+
+  if (!reducedMotion) {
+    new FallingLeaves({
+      count: 16,
+      size: [12, 21],
+      speed: [0.5, 1],
+      wind: [-0.25, 0.35],
+      opacity: 0.78,
+      colors: ["#d85143", "#e28a35", "#d88a21", "#b9563c"],
+      shapes: ["maple", "oak", "ginkgo", "birch", "oval"],
+      zIndex: 0,
+      respectReducedMotion: true,
+    });
+  }
 
   const scrambleHeading =
     document.querySelector<HTMLElement>("[data-scramble]");
